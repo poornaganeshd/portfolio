@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import Link from "next/link"; // ✅ Use Next.js Link
 
 const HeroSection: React.FC = () => {
-  const [typedText, setTypedText] = useState('');
-  const words = ['AI engineer', 'AI researcher', 'Creator'];
-  
+  const [typedText, setTypedText] = useState("");
+  const words = ["AI engineer", "AI researcher", "Creator"];
+
   useEffect(() => {
     let wordIndex = 0;
     let charIndex = 0;
@@ -14,14 +15,12 @@ const HeroSection: React.FC = () => {
 
     const type = () => {
       const currentWord = words[wordIndex];
-      let displayText = '';
+      let displayText = "";
 
       if (isDeleting) {
-        // Deleting characters
         displayText = currentWord.substring(0, charIndex - 1);
         charIndex--;
       } else {
-        // Typing characters
         displayText = currentWord.substring(0, charIndex + 1);
         charIndex++;
       }
@@ -31,11 +30,9 @@ const HeroSection: React.FC = () => {
       let typeSpeed = isDeleting ? 75 : 150;
 
       if (!isDeleting && charIndex === currentWord.length) {
-        // Pause at the end of the word
-        typeSpeed = 2000;
+        typeSpeed = 2000; // pause at end
         isDeleting = true;
       } else if (isDeleting && charIndex === 0) {
-        // Move to the next word
         isDeleting = false;
         wordIndex = (wordIndex + 1) % words.length;
         typeSpeed = 500;
@@ -44,12 +41,13 @@ const HeroSection: React.FC = () => {
       timeoutId = setTimeout(type, typeSpeed);
     };
 
-    // Start the typing effect
     timeoutId = setTimeout(type, 500);
 
-    // Cleanup function to clear the timeout
     return () => clearTimeout(timeoutId);
-  }, []); // Empty dependency array ensures this effect runs only once on mount
+
+    // ✅ Safe ignore: words is static, so no need in deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <section className="h-screen w-full flex flex-col justify-center items-center bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white p-4">
@@ -65,17 +63,17 @@ const HeroSection: React.FC = () => {
 
         {/* Short Description */}
         <p className="text-lg sm:text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto">
-          I test ai tools, design ai agents, automate workflows.
+          I test AI tools, design AI agents, automate workflows.
         </p>
 
         {/* Call-to-Action Button */}
         <div>
-          <a
+          <Link
             href="/projects"
             className="inline-block bg-transparent text-lime-400 font-medium text-lg px-8 py-3 rounded-md border-2 border-lime-400 shadow-lg hover:bg-lime-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-lime-400 transition-all duration-300 ease-in-out transform hover:-translate-y-1"
           >
             View My Work
-          </a>
+          </Link>
         </div>
       </div>
     </section>
@@ -83,4 +81,3 @@ const HeroSection: React.FC = () => {
 };
 
 export default HeroSection;
-
