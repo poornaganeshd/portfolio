@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link"; // ✅ Use Next.js Link
+import Link from "next/link";
+
+const words = ["AI engineer", "AI researcher", "Creator"]; // <-- Moved outside
 
 const HeroSection: React.FC = () => {
   const [typedText, setTypedText] = useState("");
-  const words = ["AI engineer", "AI researcher", "Creator"];
 
   useEffect(() => {
     let wordIndex = 0;
@@ -30,7 +31,7 @@ const HeroSection: React.FC = () => {
       let typeSpeed = isDeleting ? 75 : 150;
 
       if (!isDeleting && charIndex === currentWord.length) {
-        typeSpeed = 2000; // pause at end
+        typeSpeed = 2000;
         isDeleting = true;
       } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
@@ -44,15 +45,11 @@ const HeroSection: React.FC = () => {
     timeoutId = setTimeout(type, 500);
 
     return () => clearTimeout(timeoutId);
-
-    // ✅ Safe ignore: words is static, so no need in deps
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, []); // ✅ Now safe, no ESLint complaint
 
   return (
     <section className="h-screen w-full flex flex-col justify-center items-center bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white p-4">
       <div className="text-center space-y-8 max-w-4xl">
-        {/* Animated Greeting */}
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight drop-shadow-lg">
           Hi, I&apos;m poorna
           <span className="block sm:inline text-lime-400 ml-3">
@@ -60,13 +57,9 @@ const HeroSection: React.FC = () => {
             <span className="animate-ping">|</span>
           </span>
         </h1>
-
-        {/* Short Description */}
         <p className="text-lg sm:text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto">
           I test AI tools, design AI agents, automate workflows.
         </p>
-
-        {/* Call-to-Action Button */}
         <div>
           <Link
             href="/projects"
