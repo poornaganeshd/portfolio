@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 
 const words = ["AI engineer", "AI researcher", "Creator"]; // <-- Moved outside
 
@@ -60,13 +59,15 @@ const HeroSection: React.FC = () => {
         <p className="text-lg sm:text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto">
           I test AI tools, design AI agents, automate workflows.
         </p>
-        <div>
-          <Link
-            href="/projects"
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block bg-transparent text-lime-400 font-medium text-lg px-8 py-3 rounded-md border-2 border-lime-400 shadow-lg hover:bg-lime-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-lime-400 transition-all duration-300 ease-in-out transform hover:-translate-y-1"
           >
-            View My Work
-          </Link>
+            View Resume
+          </a>
         </div>
       </div>
     </section>
@@ -74,3 +75,4 @@ const HeroSection: React.FC = () => {
 };
 
 export default HeroSection;
+
