@@ -7,10 +7,9 @@ import Hero from "./components/Hero";
 import CardDeck from "./components/CardDeck";
 import Services from "./components/Services";
 import TechMarquee from "./components/TechMarquee";
-import Testimonials from "./components/Testimonials";
+import ThoughtsPreview from "./components/Testimonials";
 import Footer from "./components/Footer";
 import Process from "./components/Process";
-
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,32 +17,30 @@ export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <main ref={containerRef} className="w-full min-h-screen bg-[#050505] text-[#F1F1F1] selection:bg-[#00F0FF] selection:text-black">
-
-      {/* 1. Hero Scene */}
+    <main
+      ref={containerRef}
+      className="w-full min-h-screen bg-[#050505] text-[#F1F1F1] selection:bg-[#00F0FF] selection:text-black"
+    >
+      {/* 1. Personal hero */}
       <Hero />
 
-      {/* 2. Card Deck (Replaces Sticky Scroll) */}
+      {/* 2. Featured products (sticky card deck) */}
       <CardDeck />
 
-      {/* 3. Selected Works */}
-
-
-      {/* 4. Interactive Services */}
+      {/* 3. My Craft — three obsessions */}
       <Services />
 
-      {/* 4.5 The Process */}
+      {/* 4. The Way — how I work */}
       <Process />
 
-      {/* 5. Testimonials */}
-      <Testimonials />
+      {/* 5. Featured Thoughts */}
+      <ThoughtsPreview />
 
-      {/* 6. Tech Marquee */}
+      {/* 6. Tech stack marquee */}
       <TechMarquee />
 
       {/* Footer */}
       <Footer />
-
     </main>
   );
 }

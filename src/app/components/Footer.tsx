@@ -21,78 +21,100 @@ const Footer: React.FC = () => {
         stagger: 0.05,
         ease: "power2.out",
         yoyo: true,
-        repeat: 1
+        repeat: 1,
       });
     }
   };
 
-  const handleMouseLeave = () => {
-    setCursorType("default");
-  };
-
-  const splitText = (text: string) => {
-    return text.split("").map((char, i) => (
+  const splitText = (text: string) =>
+    text.split("").map((char, i) => (
       <span key={i} className="footer-char inline-block whitespace-pre">
         {char}
       </span>
     ));
-  };
 
   return (
     <footer className="w-full bg-[#050505] text-[#F1F1F1] py-24 px-6 md:px-20 border-t border-white/10 relative overflow-hidden">
-
-      {/* Background Texture similar to rest of site */}
-      <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+      <div
+        className="absolute inset-0 opacity-5 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
 
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center relative z-10 gap-12 md:gap-0">
-
-        {/* Left Side: Call to Action */}
+        {/* Left: CTA */}
         <div className="flex flex-col items-start gap-4">
           <h2
             ref={textRef}
             className="text-6xl md:text-8xl font-black tracking-tighter mix-blend-difference cursor-pointer"
             onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            onMouseLeave={() => setCursorType("default")}
           >
             {splitText("LET'S TALK.")}
           </h2>
           <Magnetic>
             <a
-              href="mailto:contact@antigravity.agency"
+              href="mailto:poornaganesh@example.com"
               className="text-xl md:text-2xl font-serif italic text-[#00F0FF] hover:text-white transition-colors duration-300 inline-block"
               onMouseEnter={() => setCursorType("hover")}
               onMouseLeave={() => setCursorType("default")}
             >
-              contact@antigravity.agency
+              poornaganesh@example.com
             </a>
           </Magnetic>
         </div>
 
-        {/* Right Side: Navigation & Socials */}
+        {/* Right: Nav + Socials */}
         <div className="flex flex-col md:items-end gap-8">
           <div className="flex flex-col md:flex-row gap-8 md:gap-12">
             <div className="flex flex-col gap-4">
               <h3 className="text-xs uppercase tracking-widest opacity-50">Sitemap</h3>
-              <Link href="/ai-lab" className="hover:text-[#00F0FF] transition-colors" onMouseEnter={() => setCursorType("hover")} onMouseLeave={() => setCursorType("default")}>AI Lab</Link>
-              <Link href="/playground" className="hover:text-[#00F0FF] transition-colors" onMouseEnter={() => setCursorType("hover")} onMouseLeave={() => setCursorType("default")}>Playground</Link>
-              <Link href="/projects" className="hover:text-[#00F0FF] transition-colors" onMouseEnter={() => setCursorType("hover")} onMouseLeave={() => setCursorType("default")}>Projects</Link>
+              {[
+                { label: "About", href: "/about" },
+                { label: "Products", href: "/products" },
+                { label: "Thoughts", href: "/thoughts" },
+                { label: "Resume", href: "/resume" },
+              ].map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="hover:text-[#00F0FF] transition-colors"
+                  onMouseEnter={() => setCursorType("hover")}
+                  onMouseLeave={() => setCursorType("default")}
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
             <div className="flex flex-col gap-4">
               <h3 className="text-xs uppercase tracking-widest opacity-50">Socials</h3>
-              <Magnetic><a href="#" className="hover:text-[#FF006E] transition-colors inline-block" onMouseEnter={() => setCursorType("hover")} onMouseLeave={() => setCursorType("default")}>LinkedIn</a></Magnetic>
-              <Magnetic><a href="#" className="hover:text-[#FF006E] transition-colors inline-block" onMouseEnter={() => setCursorType("hover")} onMouseLeave={() => setCursorType("default")}>Twitter / X</a></Magnetic>
-              <Magnetic><a href="#" className="hover:text-[#FF006E] transition-colors inline-block" onMouseEnter={() => setCursorType("hover")} onMouseLeave={() => setCursorType("default")}>GitHub</a></Magnetic>
+              {[
+                { label: "LinkedIn", href: "#" },
+                { label: "Twitter / X", href: "#" },
+                { label: "GitHub", href: "#" },
+              ].map((social) => (
+                <Magnetic key={social.label}>
+                  <a
+                    href={social.href}
+                    className="hover:text-[#FF006E] transition-colors inline-block"
+                    onMouseEnter={() => setCursorType("hover")}
+                    onMouseLeave={() => setCursorType("default")}
+                  >
+                    {social.label}
+                  </a>
+                </Magnetic>
+              ))}
             </div>
           </div>
         </div>
-
       </div>
 
       <div className="max-w-7xl mx-auto mt-20 md:mt-32 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs opacity-30 uppercase tracking-widest">
-        <p>&copy; {currentYear} ANTIGRAVITY AGENCY.</p>
-        <p>Designed with Clarity.</p>
+        <p>&copy; {currentYear} Poornaganesh.</p>
+        <p>Tech &amp; Film Wanderer.</p>
       </div>
-
     </footer>
   );
 };
