@@ -11,16 +11,18 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Poornaganesh | Creative Developer",
-  description: "Portfolio of Poornaganesh, a creative developer specializing in Next.js, WebGL, and Agentic AI.",
+  title: "Poornaganesh — Tech & Film",
+  description:
+    "Poornaganesh is a tech and film wanderer specialising in AI agentic development, with a long-term goal as a filmmaker.",
   openGraph: {
-    title: "Poornaganesh | Creative Developer",
-    description: "Building digital experiences that defy gravity.",
-    url: "https://poorna.dev",
-    siteName: "Poornaganesh Portfolio",
+    title: "Poornaganesh — Tech & Film",
+    description:
+      "Building intelligent systems by day. Chasing cinematic stories by soul.",
+    url: "https://poornaganesh.dev",
+    siteName: "Poornaganesh",
     images: [
       {
-        url: "/images/neural-scape.png", // Using an existing image for now
+        url: "/images/neural-scape.png",
         width: 1200,
         height: 630,
       },
@@ -30,9 +32,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Poornaganesh | Creative Developer",
-    description: "Building digital experiences that defy gravity.",
-    creator: "@poorna_dev",
+    title: "Poornaganesh — Tech & Film",
+    description:
+      "Building intelligent systems by day. Chasing cinematic stories by soul.",
+    creator: "@poornaganesh",
   },
 };
 
